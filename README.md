@@ -188,5 +188,6 @@ After executing the `02_get_patches.ipynb` notebook, you can run the following c
 RUN_NAME=CodeGPT_MultiAgent_Llama4_Maverick
 python -m swebench.harness.run_evaluation \
     --predictions_path /home/pudu/judini/swe-bench/data/results/$RUN_NAME.jsonl \
-    --max_workers 2
+    --max_workers 2 \
+    --run_id 0
 ``` 
