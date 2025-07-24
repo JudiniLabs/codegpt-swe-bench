@@ -115,11 +115,11 @@ graph TD
 
         K --> L{Re-query needed?};
         L -- Yes --> M["Call PatchFixer LLM (up to 3 times)"];
-        L -- No --> N[Apply Patch];
+        L -- No --> N[Get git diff patch ];
         M --> N;
 
-        N --> O{Patch Successful?};
-        O -- Yes --> P[Save Patch];
+        N --> O{Patch Successful created?};
+        O -- Yes --> P[Save .diff file];
         O -- No --> Q[Handle Failure];
         P --> Z;
         Q --> Z[END];
@@ -133,7 +133,7 @@ graph TD
 
 ## Fuzzy Matching
 
-The fuzzy matching logic is done using Levenshtein ratio, with a treshold of 0.8 (See [`notebooks\CodeGPT_Patcher.py` - `process_patches`](notebooks/CodeGPT_Patcher.py#L277) for details. )
+The fuzzy matching logic is done using Levenshtein ratio, with a treshold of 0.98 (See [`notebooks\CodeGPT_Patcher.py` - `process_patches`](notebooks/CodeGPT_Patcher.py#L277) for details. )
 
 ```mermaid
 graph TD
@@ -165,6 +165,17 @@ graph TD
     style K fill:#e8f5e9,stroke:#34A853,stroke-width:2px
 ```
 
+The Levenshtein ratio is calculated as follows:
+
+$ \large
+s_1, s_2 \quad : \text{input strings} \\
+D = \text{Levenshtein distance}(s_1, s_2) \\
+M = \text{max}(len(s_1), len(s_2)) - D \\
+Ratio = \frac{2M}{len(s_1) + len(s_2)}
+$
+
+In our case $len(s_1) = len(s_2)$, so the ratio is simplified to:
+$ Ratio = \frac{len(s_1) - D}{len(s_1)}$
 
 
 ## Running swe-bench
