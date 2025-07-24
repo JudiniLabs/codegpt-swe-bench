@@ -1,5 +1,28 @@
 # CodeGPT SWE-Bench Results
 
+This repository contains the implementation and results of CodeGPT's approach to solving a subset of SWE-Bench instances using a multi-agent system. The solution employs three specialized agents - a Patcher, Validator, and PatchFixer. The system uses fuzzy matching with Levenshtein ratio for patch application and include notebooks for analyzing performance on the SWE-Bench dataset.
+
+30 instances were randomly selected:
+```py
+>>> instance_ids = merged_df.sample(30).index
+>>> instance_ids
+ ['django__django-15781', 'django__django-12125',
+  'scikit-learn__scikit-learn-11040', 'sympy__sympy-21614',
+  'sphinx-doc__sphinx-8595', 'django__django-12856',
+  'django__django-17087', 'matplotlib__matplotlib-26011',
+  'django__django-12589', 'pydata__xarray-4094',
+  'pylint-dev__pylint-6506', 'scikit-learn__scikit-learn-25747',
+  'django__django-14382', 'psf__requests-3362', 'sympy__sympy-23262',
+  'sympy__sympy-13895', 'django__django-11049', 'pydata__xarray-4493',
+  'matplotlib__matplotlib-23987', 'sympy__sympy-16106',
+  'django__django-15498', 'pytest-dev__pytest-5227', 'sympy__sympy-21847',
+  'sympy__sympy-13773', 'django__django-14997', 'sympy__sympy-19007',
+  'pytest-dev__pytest-5221', 'sphinx-doc__sphinx-8721',
+  'sympy__sympy-13031', 'scikit-learn__scikit-learn-13497']
+```
+
+- Llama 4 - Maverick results: [`data/results/CodeGPT_MultiAgent_Llama4_Maverick`](./data/results/CodeGPT_MultiAgent_Llama4_Maverick)
+- Claude Opus 4 results:  [`data/results/CodeGPT_MultiAgent_Opus4`](./data/results/CodeGPT_MultiAgent_Opus4)
 
 ## Directory Structure
 
@@ -29,14 +52,14 @@
 
 ## Prompts
 
-The prompts stored in [`prompts\agents.ts`](prompts/agents.ts) are the ones used depending on the `agentType` parameter (see [`notebooks\CodeGPT_Patcher.py`](notebooks/CodeGPT_Patcher.py) file for details) of the API.
+The prompts stored in [`prompts\agents.ts`](prompts/agents.ts) are used depending on the `agentType` parameter (see [`notebooks\CodeGPT_Patcher.py`](notebooks/CodeGPT_Patcher.py) file for details) of the API.
 | agentType | Prompt |
 | --- | --- |
 | `patcher` | `patcherSystemPrompt` |
 | `validator` | `validatorSystemPrompt` |
 | `patcherFixer` | `patchFixerSystemPrompt` |
 
-As can you note, all prompts contain a 1-shot example of the output:
+As can you note, all prompts contain a 1-shot example of the desired output:
 ```
 <replace file=src/foo.py>
 @@REPLACE@@
