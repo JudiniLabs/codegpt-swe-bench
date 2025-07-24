@@ -108,6 +108,42 @@ graph TD
     style M fill:#cde4ff,stroke:#4285F4,stroke-width:2px
 ```
 
+## Fuzzy Matching
+
+The fuzzy matching logic is done using Levenshtein ratio, with a treshold of 0.8 (See [`notebooks\CodeGPT_Patcher.py` - `process_patches`](notebooks/CodeGPT_Patcher.py#L277) for details. )
+
+```mermaid
+graph TD
+    A[Start process_patches] --> B{For each patch};
+    B -- Patch to process --> C{File content available?};
+    C -- No --> D[Mark for re-query] --> B;
+    C -- Yes --> E[Loop through file segments<br>to find best fuzzy match];
+    E --> F{Best match ratio > threshold?};
+    F -- Yes --> G[Good Match:<br>Store patch location<br>Mark as NOT needing re-query];
+    F -- No --> H[Bad Match:<br>Mark for re-query];
+    G --> B;
+    H --> B;
+    B -- No more patches --> I{Any patch marked for re-query?};
+    I -- Yes --> J[Set global re-query flag to True];
+    I -- No --> K[Set global re-query flag to False];
+    J --> Z[End];
+    K --> Z[End];
+
+    %% Styling
+    style A fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style Z fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style B fill:#e3f2fd,stroke:#4285F4,stroke-width:2px
+    style C fill:#fffde7,stroke:#fbc02d,stroke-width:2px
+    style F fill:#fffde7,stroke:#fbc02d,stroke-width:2px
+    style I fill:#fffde7,stroke:#fbc02d,stroke-width:2px
+    style G fill:#e8f5e9,stroke:#34A853,stroke-width:2px
+    style H fill:#fce8e6,stroke:#ea4335,stroke-width:2px
+    style J fill:#fce8e6,stroke:#ea4335,stroke-width:2px
+    style K fill:#e8f5e9,stroke:#34A853,stroke-width:2px
+```
+
+
+
 ## Running swe-bench
 
 After executing the `02_get_patches.ipynb` notebook, you can run the following command inside the SWE-bench repo to evaluate the results:
