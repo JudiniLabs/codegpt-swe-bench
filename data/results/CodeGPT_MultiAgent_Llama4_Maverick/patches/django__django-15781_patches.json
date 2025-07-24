@@ -1,0 +1,12 @@
+{
+    "django/core/management/base.py": [
+        {
+            "orig_text": "    def __init__(\n        self, *, missing_args_message=None, called_from_command_line=None, **kwargs\n    ):\n        self.missing_args_message = missing_args_message\n        self.called_from_command_line = called_from_command_line\n        super().__init__(**kwargs)\n",
+            "new_text": "    def __init__(\n        self, azza=1, *, missing_args_message=None, called_from_command_line=None, **kwargs\n    ):\n        self.missing_args_message = missing_args_message\n        self.called_from_command_line = called_from_command_line\n        super().__init__(**kwargs)\n",
+            "match_ratio": 1.0,
+            "match_segment": "    def __init__(\n        self, *, missing_args_message=None, called_from_command_line=None, **kwargs\n    ):\n        self.missing_args_message = missing_args_message\n        self.called_from_command_line = called_from_command_line\n        super().__init__(**kwargs)\n",
+            "start_idx": 1520,
+            "num_matches": 1
+        }
+    ]
+}

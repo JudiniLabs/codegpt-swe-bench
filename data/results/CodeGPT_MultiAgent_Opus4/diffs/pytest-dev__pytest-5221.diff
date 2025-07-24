@@ -1,0 +1,10 @@
+--- a/src/_pytest/python.py
++++ b/src/_pytest/python.py
+@@ -1353,6 +1353,7 @@
+             write_docstring(tw, doc)
+         else:
+             tw.line("    %s: no docstring available" % (loc,), red=True)
++        tw.line("    scope: %s" % fixturedef.scope, yellow=True)
+ 
+ 
+ def write_docstring(tw, doc, indent="    "):

@@ -1,0 +1,20 @@
+{
+    "sympy/polys/monomials.py": [
+        {
+            "orig_text": "                for variable in item:\n                    if variable != 1:\n                        powers[variable] += 1\n                if max(powers.values()) >= min_degree:\n                    monomials_list_comm.append(Mul(*item))\n",
+            "new_text": "                for variable in item:\n                    if variable != 1:\n                        powers[variable] += 1\n                if sum(powers.values()) >= min_degree:\n                    monomials_list_comm.append(Mul(*item))\n",
+            "match_ratio": 1.0,
+            "match_segment": "                for variable in item:\n                    if variable != 1:\n                        powers[variable] += 1\n                if max(powers.values()) >= min_degree:\n                    monomials_list_comm.append(Mul(*item))\n",
+            "start_idx": 5035,
+            "num_matches": 1
+        },
+        {
+            "orig_text": "                for variable in item:\n                    if variable != 1:\n                        powers[variable] += 1\n                if max(powers.values()) >= min_degree:\n                    monomials_list_non_comm.append(Mul(*item))\n",
+            "new_text": "                for variable in item:\n                    if variable != 1:\n                        powers[variable] += 1\n                if sum(powers.values()) >= min_degree:\n                    monomials_list_non_comm.append(Mul(*item))\n",
+            "match_ratio": 1.0,
+            "match_segment": "                for variable in item:\n                    if variable != 1:\n                        powers[variable] += 1\n                if max(powers.values()) >= min_degree:\n                    monomials_list_non_comm.append(Mul(*item))\n",
+            "start_idx": 5553,
+            "num_matches": 1
+        }
+    ]
+}

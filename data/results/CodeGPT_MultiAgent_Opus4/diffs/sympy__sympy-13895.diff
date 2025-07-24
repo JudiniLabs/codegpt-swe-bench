@@ -1,0 +1,48 @@
+--- a/sympy/core/numbers.py
++++ b/sympy/core/numbers.py
+@@ -2258,8 +2258,14 @@
+         sqr_int = 1
+         sqr_gcd = 0
+         sqr_dict = {}
++        neg_exp = 0  # track -1 exponent separately
++
+         for prime, exponent in dict.items():
+             exponent *= expt.p
++            # Special handling for -1 to maintain consistency
++            if prime == -1:
++                neg_exp = exponent
++                continue
+             # remove multiples of expt.q: (2**12)**(1/10) -> 2*(2**2)**(1/10)
+             div_e, div_m = divmod(exponent, expt.q)
+             if div_e > 0:
+@@ -2272,7 +2278,17 @@
+                     out_rad *= Pow(prime, Rational(div_m//g, expt.q//g))
+                 else:
+                     sqr_dict[prime] = div_m
+-        # identify gcd of remaining powers
++
++        # Handle -1 factor separately to maintain consistency
++        if neg_exp > 0:
++            div_e, div_m = divmod(neg_exp, expt.q)
++            if div_e > 0:
++                out_int *= (-1)**div_e
++            if div_m > 0:
++                # Always keep -1 raised to fractional powers as is
++                out_rad *= Pow(-1, Rational(div_m, expt.q))
++
++        # identify gcd of remaining powers (excluding -1)
+         for p, ex in sqr_dict.items():
+             if sqr_gcd == 0:
+                 sqr_gcd = ex
+@@ -2285,7 +2301,10 @@
+         if sqr_int == self and out_int == 1 and out_rad == 1:
+             result = None
+         else:
+-            result = out_int*out_rad*Pow(sqr_int, Rational(sqr_gcd, expt.q))
++            if sqr_gcd > 0:
++                result = out_int*out_rad*Pow(sqr_int, Rational(sqr_gcd, expt.q))
++            else:
++                result = out_int*out_rad
+         return result
+ 
+     def _eval_is_prime(self):

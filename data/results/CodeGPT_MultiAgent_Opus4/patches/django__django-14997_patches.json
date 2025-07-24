@@ -1,0 +1,12 @@
+{
+    "django/db/backends/ddl_references.py": [
+        {
+            "orig_text": "    def rename_table_references(self, old_table, new_table):\n        if self.table != old_table:\n            return\n        expressions = deepcopy(self.expressions)\n        self.columns = []\n        for col in self.compiler.query._gen_cols([expressions]):\n            col.alias = new_table\n        self.expressions = expressions\n        super().rename_table_references(old_table, new_table)\n",
+            "new_text": "    def rename_table_references(self, old_table, new_table):\n        if self.table != old_table:\n            return\n        expressions = deepcopy(self.expressions)\n        self.columns = []\n        for col in self.compiler.query._gen_cols([expressions]):\n            # Only update the alias if it's not already set to avoid\n            # generating table.column notation in index expressions\n            # which SQLite doesn't support.\n            if col.alias is None:\n                col.alias = new_table\n        self.expressions = expressions\n        super().rename_table_references(old_table, new_table)\n",
+            "match_ratio": 1.0,
+            "match_segment": "    def rename_table_references(self, old_table, new_table):\n        if self.table != old_table:\n            return\n        expressions = deepcopy(self.expressions)\n        self.columns = []\n        for col in self.compiler.query._gen_cols([expressions]):\n            col.alias = new_table\n        self.expressions = expressions\n        super().rename_table_references(old_table, new_table)\n",
+            "start_idx": 7045,
+            "num_matches": 1
+        }
+    ]
+}

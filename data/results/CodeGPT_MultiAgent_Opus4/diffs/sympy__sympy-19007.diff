@@ -1,0 +1,90 @@
+--- a/sympy/matrices/expressions/blockmatrix.py
++++ b/sympy/matrices/expressions/blockmatrix.py
+@@ -7,7 +7,7 @@
+ from sympy.utilities import sift
+ from sympy.utilities.misc import filldedent
+ 
+-from sympy.matrices.expressions.matexpr import MatrixExpr, ZeroMatrix, Identity
++from sympy.matrices.expressions.matexpr import MatrixExpr, ZeroMatrix, Identity, MatrixElement
+ from sympy.matrices.expressions.matmul import MatMul
+ from sympy.matrices.expressions.matadd import MatAdd
+ from sympy.matrices.expressions.matpow import MatPow
+@@ -233,18 +233,68 @@
+         return self._eval_transpose()
+ 
+     def _entry(self, i, j, **kwargs):
+-        # Find row entry
+-        for row_block, numrows in enumerate(self.rowblocksizes):
+-            if (i < numrows) != False:
+-                break
++        from sympy.core.numbers import Integer
++
++        # Try to determine which block contains the element
++        row_block = None
++        col_block = None
++        i_offset = i
++        j_offset = j
++
++        # Find row block
++        cumulative_rows = 0
++        for idx, numrows in enumerate(self.rowblocksizes):
++            # Check if index is numeric
++            if isinstance(i, (int, Integer)):
++                if i < cumulative_rows + numrows:
++                    row_block = idx
++                    i_offset = i - cumulative_rows
++                    break
++                cumulative_rows += numrows
+             else:
+-                i -= numrows
+-        for col_block, numcols in enumerate(self.colblocksizes):
+-            if (j < numcols) != False:
+-                break
++                # For symbolic indices, check if we can determine the block
++                # Check if i is definitely in this block
++                if (i - cumulative_rows).is_nonnegative and (i < cumulative_rows + numrows) == True:
++                    row_block = idx
++                    i_offset = i - cumulative_rows
++                    break
++                # Check if i is definitely past this block
++                elif (i >= cumulative_rows + numrows) == True:
++                    cumulative_rows += numrows
++                else:
++                    # Cannot determine - need to return unevaluated
++                    break
++
++        # Find column block
++        cumulative_cols = 0
++        for idx, numcols in enumerate(self.colblocksizes):
++            # Check if index is numeric
++            if isinstance(j, (int, Integer)):
++                if j < cumulative_cols + numcols:
++                    col_block = idx
++                    j_offset = j - cumulative_cols
++                    break
++                cumulative_cols += numcols
+             else:
+-                j -= numcols
+-        return self.blocks[row_block, col_block][i, j]
++                # For symbolic indices, check if we can determine the block
++                # Check if j is definitely in this block
++                if (j - cumulative_cols).is_nonnegative and (j < cumulative_cols + numcols) == True:
++                    col_block = idx
++                    j_offset = j - cumulative_cols
++                    break
++                # Check if j is definitely past this block
++                elif (j >= cumulative_cols + numcols) == True:
++                    cumulative_cols += numcols
++                else:
++                    # Cannot determine - need to return unevaluated
++                    break
++
++        # If we could determine both blocks, return the element from that block
++        if row_block is not None and col_block is not None:
++            return self.blocks[row_block, col_block][i_offset, j_offset]
++
++        # Otherwise, return an unevaluated MatrixElement
++        return MatrixElement(self, i, j)
+ 
+     @property
+     def is_Identity(self):

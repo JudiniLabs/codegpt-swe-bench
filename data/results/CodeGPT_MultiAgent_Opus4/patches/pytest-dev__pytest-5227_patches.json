@@ -1,0 +1,22 @@
+{
+    "src/_pytest/logging.py": [
+        {
+            "orig_text": "import pytest\nfrom _pytest.compat import dummy_context_manager\nfrom _pytest.config import create_terminal_writer\nfrom _pytest.pathlib import Path\n\nDEFAULT_LOG_FORMAT = \"%(filename)-25s %(lineno)4d %(levelname)-8s %(message)s\"\nDEFAULT_LOG_DATE_FORMAT = \"%H:%M:%S\"\n",
+            "new_text": "import pytest\nfrom _pytest.compat import dummy_context_manager\nfrom _pytest.config import create_terminal_writer\nfrom _pytest.pathlib import Path\n\nDEFAULT_LOG_FORMAT = \"%(levelname)-8s %(name)s:%(filename)s:%(lineno)d %(message)s\"\nDEFAULT_LOG_DATE_FORMAT = \"%H:%M:%S\"\n",
+            "match_ratio": 1.0,
+            "match_segment": "import pytest\nfrom _pytest.compat import dummy_context_manager\nfrom _pytest.config import create_terminal_writer\nfrom _pytest.pathlib import Path\n\nDEFAULT_LOG_FORMAT = \"%(filename)-25s %(lineno)4d %(levelname)-8s %(message)s\"\nDEFAULT_LOG_DATE_FORMAT = \"%H:%M:%S\"\n",
+            "start_idx": 238,
+            "num_matches": 1
+        }
+    ],
+    "testing/logging/test_formatter.py": [
+        {
+            "orig_text": "def test_coloredlogformatter():\n    logfmt = \"%(filename)-25s %(lineno)4d %(levelname)-8s %(message)s\"\n\n    record = logging.LogRecord(\n        name=\"dummy\",\n        level=logging.INFO,\n        pathname=\"dummypath\",\n        lineno=10,\n        msg=\"Test Message\",\n        args=(),\n        exc_info=False,\n    )\n\n    class ColorConfig(object):\n        class option(object):\n            pass\n\n    tw = py.io.TerminalWriter()\n    tw.hasmarkup = True\n    formatter = ColoredLevelFormatter(tw, logfmt)\n    output = formatter.format(record)\n    assert output == (\n        \"dummypath                   10 \\x1b[32mINFO    \\x1b[0m Test Message\"\n    )\n\n    tw.hasmarkup = False\n    formatter = ColoredLevelFormatter(tw, logfmt)\n    output = formatter.format(record)\n    assert output == (\"dummypath                   10 INFO     Test Message\")\n",
+            "new_text": "def test_coloredlogformatter():\n    logfmt = \"%(levelname)-8s %(name)s:%(filename)s:%(lineno)d %(message)s\"\n\n    record = logging.LogRecord(\n        name=\"dummy\",\n        level=logging.INFO,\n        pathname=\"dummypath\",\n        lineno=10,\n        msg=\"Test Message\",\n        args=(),\n        exc_info=False,\n    )\n\n    class ColorConfig(object):\n        class option(object):\n            pass\n\n    tw = py.io.TerminalWriter()\n    tw.hasmarkup = True\n    formatter = ColoredLevelFormatter(tw, logfmt)\n    output = formatter.format(record)\n    assert output == (\n        \"\\x1b[32mINFO    \\x1b[0m dummy:dummypath:10 Test Message\"\n    )\n\n    tw.hasmarkup = False\n    formatter = ColoredLevelFormatter(tw, logfmt)\n    output = formatter.format(record)\n    assert output == (\"INFO     dummy:dummypath:10 Test Message\")\n",
+            "match_ratio": 1.0,
+            "match_segment": "def test_coloredlogformatter():\n    logfmt = \"%(filename)-25s %(lineno)4d %(levelname)-8s %(message)s\"\n\n    record = logging.LogRecord(\n        name=\"dummy\",\n        level=logging.INFO,\n        pathname=\"dummypath\",\n        lineno=10,\n        msg=\"Test Message\",\n        args=(),\n        exc_info=False,\n    )\n\n    class ColorConfig(object):\n        class option(object):\n            pass\n\n    tw = py.io.TerminalWriter()\n    tw.hasmarkup = True\n    formatter = ColoredLevelFormatter(tw, logfmt)\n    output = formatter.format(record)\n    assert output == (\n        \"dummypath                   10 \\x1b[32mINFO    \\x1b[0m Test Message\"\n    )\n\n    tw.hasmarkup = False\n    formatter = ColoredLevelFormatter(tw, logfmt)\n    output = formatter.format(record)\n    assert output == (\"dummypath                   10 INFO     Test Message\")\n",
+            "start_idx": 82,
+            "num_matches": 1
+        }
+    ]
+}

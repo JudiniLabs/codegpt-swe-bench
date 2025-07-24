@@ -1,0 +1,14 @@
+--- a/sympy/printing/pycode.py
++++ b/sympy/printing/pycode.py
+@@ -526,7 +526,10 @@
+         return self._print_ArraySymbol(expr)
+ 
+ 
+-class PythonCodePrinter(AbstractPythonCodePrinter):
++class PythonCodePrinter(AbstractPythonPythonCodePrinter):
++
++ def _print_Tuple(self, expr):
++ return '(%s,)' % ', '.join(self._print(item) for item in expr.args) if len(expr.args) ==1 else '(%s)' % ', '.join(self._print(item) for item in expr.args)
+ 
+     def _print_sign(self, e):
+         return '(0.0 if {e} == 0 else {f}(1, {e}))'.format(

@@ -1,0 +1,11 @@
+{
+    "sympy/core/function.py": [
+        {
+            "orig_text": "class Derivative(Expr):\n ...\n \n @property\n def kind(self):\n return self.expr.kind\n",
+            "new_text": "class Derivative(Expr):\n ...\n \n @property\n def kind(self):\n return self.expr.kind\n \n ...\n",
+            "match_ratio": 0.6219512195121951,
+            "match_segment": "ls = variables\n\n    @property\n    def free_symbols(self):\n        return self.expr",
+            "num_matches": 0
+        }
+    ]
+}

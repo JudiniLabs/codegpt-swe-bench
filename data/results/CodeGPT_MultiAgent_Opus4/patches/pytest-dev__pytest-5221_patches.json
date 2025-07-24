@@ -1,0 +1,12 @@
+{
+    "src/_pytest/python.py": [
+        {
+            "orig_text": "        if verbose <= 0 and argname[0] == \"_\":\n            continue\n        if verbose > 0:\n            funcargspec = \"%s -- %s\" % (argname, bestrel)\n        else:\n            funcargspec = argname\n        tw.line(funcargspec, green=True)\n        loc = getlocation(fixturedef.func, curdir)\n        doc = fixturedef.func.__doc__ or \"\"\n        if doc:\n            write_docstring(tw, doc)\n        else:\n            tw.line(\"    %s: no docstring available\" % (loc,), red=True)\n",
+            "new_text": "        if verbose <= 0 and argname[0] == \"_\":\n            continue\n        if verbose > 0:\n            funcargspec = \"%s -- %s\" % (argname, bestrel)\n        else:\n            funcargspec = argname\n        tw.line(funcargspec, green=True)\n        loc = getlocation(fixturedef.func, curdir)\n        doc = fixturedef.func.__doc__ or \"\"\n        if doc:\n            write_docstring(tw, doc)\n        else:\n            tw.line(\"    %s: no docstring available\" % (loc,), red=True)\n        tw.line(\"    scope: %s\" % fixturedef.scope, yellow=True)\n",
+            "match_ratio": 1.0,
+            "match_segment": "        if verbose <= 0 and argname[0] == \"_\":\n            continue\n        if verbose > 0:\n            funcargspec = \"%s -- %s\" % (argname, bestrel)\n        else:\n            funcargspec = argname\n        tw.line(funcargspec, green=True)\n        loc = getlocation(fixturedef.func, curdir)\n        doc = fixturedef.func.__doc__ or \"\"\n        if doc:\n            write_docstring(tw, doc)\n        else:\n            tw.line(\"    %s: no docstring available\" % (loc,), red=True)\n",
+            "start_idx": 50997,
+            "num_matches": 1
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+--- a/xarray/core/dataarray.py
++++ b/xarray/core/dataarray.py
+@@ -1961,7 +1961,11 @@
+         # pull variables out of datarray
+         data_dict = {}
+         for k in variables:
+-            data_dict[k] = self.sel({variable_dim: k}).squeeze(drop=True)
++            var = self.sel({variable_dim: k}).squeeze(drop=True)
++            # drop the stacked dimension coordinate to avoid conflicts
++            if dim in var.coords:
++                var = var.drop_vars(dim)
++            data_dict[k] = var
+ 
+         # unstacked dataset
+         return Dataset(data_dict)

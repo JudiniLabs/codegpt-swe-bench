@@ -1,0 +1,47 @@
+--- a/sympy/printing/mathml.py
++++ b/sympy/printing/mathml.py
+@@ -457,6 +457,17 @@
+             x.appendChild(self._print(arg))
+         return x
+ 
++    def _print_Indexed(self, e):
++        x = self.dom.createElement('apply')
++        x.appendChild(self.dom.createElement('subscript'))
++        x.appendChild(self._print(e.base))
++        for index in e.indices:
++            x.appendChild(self._print(index))
++        return x
++
++    def _print_IndexedBase(self, e):
++        return self._print(e.label)
++
+     def _print_Relational(self, e):
+         x = self.dom.createElement('apply')
+         x.appendChild(self.dom.createElement(self.mathml_tag(e)))
+@@ -1270,6 +1281,26 @@
+         x.appendChild(mrow)
+         return x
+ 
++    def _print_Indexed(self, e):
++        if len(e.indices) == 1:
++            x = self.dom.createElement('msub')
++            x.appendChild(self._print(e.base))
++            x.appendChild(self._print(e.indices[0]))
++            return x
++        else:
++            mrow = self.dom.createElement('mrow')
++            mrow.appendChild(self._print(e.base))
++            for index in e.indices:
++                brac = self.dom.createElement('mfenced')
++                brac.setAttribute('open', '[')
++                brac.setAttribute('close', ']')
++                brac.appendChild(self._print(index))
++                mrow.appendChild(brac)
++            return mrow
++
++    def _print_IndexedBase(self, e):
++        return self._print(e.label)
++
+ 
+ def mathml(expr, printer='content', **settings):
+     """Returns the MathML representation of expr. If printer is presentation then

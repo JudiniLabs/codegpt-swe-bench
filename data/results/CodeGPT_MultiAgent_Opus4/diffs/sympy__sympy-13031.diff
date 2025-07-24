@@ -1,0 +1,20 @@
+--- a/sympy/matrices/sparse.py
++++ b/sympy/matrices/sparse.py
+@@ -946,7 +946,7 @@
+         self._smat = newD
+         self.cols -= 1
+ 
+-    def col_join(self, other):
++    def _eval_col_join(self, other):
+         """Returns B augmented beneath A (row-wise joining)::
+ 
+             [A]
+@@ -1156,7 +1156,7 @@
+         self._smat = newD
+         self.rows -= 1
+ 
+-    def row_join(self, other):
++    def _eval_row_join(self, other):
+         """Returns B appended after A (column-wise augmenting)::
+ 
+             [A B]

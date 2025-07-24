@@ -1,0 +1,12 @@
+{
+    "django/db/models/fields/__init__.py": [
+        {
+            "orig_text": "class DurationField(Field):\n    \"\"\"\n    Store timedelta objects.\n\n    Use interval on PostgreSQL, INTERVAL DAY TO SECOND on Oracle, and bigint\n    of microseconds on other databases.\n    \"\"\"\n    empty_strings_allowed = False\n    default_error_messages = {\n        'invalid': _(\"'%(value)s' value has an invalid format. It must be in \"\n                     \"[DD] [HH:[MM:]]ss[.uuuuuu] format.\")\n    }\n    description = _(\"Duration\")\n",
+            "new_text": "class DurationField(Field):\n    \"\"\"\n    Store timedelta objects.\n\n    Use interval on PostgreSQL, INTERVAL DAY TO SECOND on Oracle, and bigint\n    of microseconds on other databases.\n    \"\"\"\n    empty_strings_allowed = False\n    default_error_messages = {\n        'invalid': _(\"'%(value)s' value has an invalid format. It must be in \"\n                     \"[DD] [[HH:]MM:]ss[.uuuuuu] format.\")\n    }\n    description = _(\"Duration\")\n",
+            "match_ratio": 1.0,
+            "match_segment": "class DurationField(Field):\n    \"\"\"\n    Store timedelta objects.\n\n    Use interval on PostgreSQL, INTERVAL DAY TO SECOND on Oracle, and bigint\n    of microseconds on other databases.\n    \"\"\"\n    empty_strings_allowed = False\n    default_error_messages = {\n        'invalid': _(\"'%(value)s' value has an invalid format. It must be in \"\n                     \"[DD] [HH:[MM:]]ss[.uuuuuu] format.\")\n    }\n    description = _(\"Duration\")\n",
+            "start_idx": 58951,
+            "num_matches": 1
+        }
+    ]
+}

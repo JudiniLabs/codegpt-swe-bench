@@ -1,0 +1,12 @@
+{
+    "sklearn/utils/_set_output.py": [
+        {
+            "orig_text": "    if isinstance(data_to_wrap, pd.DataFrame):\n        if columns is not None:\n            data_to_wrap.columns = columns\n        if index is not None:\n            data_to_wrap.index = index\n        return data_to_wrap\n",
+            "new_text": "    if isinstance(data_to_wrap, pd.DataFrame):\n        if columns is not None:\n            data_to_wrap.columns = columns\n        if index is not None and len(index) == len(data_to_wrap):\n            data_to_wrap.index = index\n        return data_to_wrap\n",
+            "match_ratio": 1.0,
+            "match_segment": "    if isinstance(data_to_wrap, pd.DataFrame):\n        if columns is not None:\n            data_to_wrap.columns = columns\n        if index is not None:\n            data_to_wrap.index = index\n        return data_to_wrap\n",
+            "start_idx": 1601,
+            "num_matches": 1
+        }
+    ]
+}

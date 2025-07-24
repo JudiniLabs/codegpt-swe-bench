@@ -1,0 +1,12 @@
+{
+    "sympy/printing/pycode.py": [
+        {
+            "orig_text": "class PythonCodePrinter(AbstractPythonCodePrinter):\n",
+            "new_text": "class PythonCodePrinter(AbstractPythonPythonCodePrinter):\n\n def _print_Tuple(self, expr):\n return '(%s,)' % ', '.join(self._print(item) for item in expr.args) if len(expr.args) ==1 else '(%s)' % ', '.join(self._print(item) for item in expr.args)\n",
+            "match_ratio": 1.0,
+            "match_segment": "class PythonCodePrinter(AbstractPythonCodePrinter):\n",
+            "start_idx": 17022,
+            "num_matches": 1
+        }
+    ]
+}

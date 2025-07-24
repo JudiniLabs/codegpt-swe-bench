@@ -1,0 +1,20 @@
+{
+    "sympy/printing/mathml.py": [
+        {
+            "orig_text": "class MathMLContentPrinter(MathMLPrinterBase):\n",
+            "new_text": "class MathMLContentPrinter(MathMLPrinterBase):\n def _print_Indexed(self, e):\n x = self.dom.createElement('indexed')\n x.appendChild(self._print(e.base))\n x.appendChild(self._print(e.index))\n return x\n",
+            "match_ratio": 1.0,
+            "match_segment": "class MathMLContentPrinter(MathMLPrinterBase):\n",
+            "start_idx": 4254,
+            "num_matches": 1
+        },
+        {
+            "orig_text": "class MathMLPresentationPrinter(MathMLPrinterBase):\n",
+            "new_text": "class MathMLPresentationPrinter(MathMLPrinterBase):\n def _print_Indexed(self, e):\n msub = self.dom.createElement('msub')\n msub.appendChild(self._print(e.base.label))\n msub.appendChild(self._print(e.index))\n return msub\n",
+            "match_ratio": 1.0,
+            "match_segment": "class MathMLPresentationPrinter(MathMLPrinterBase):\n",
+            "start_idx": 17071,
+            "num_matches": 1
+        }
+    ]
+}

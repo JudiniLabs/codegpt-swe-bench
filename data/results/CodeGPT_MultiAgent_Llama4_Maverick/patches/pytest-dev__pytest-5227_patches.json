@@ -1,0 +1,12 @@
+{
+    "src/_pytest/logging.py": [
+        {
+            "orig_text": "DEFAULT_LOG_FORMAT = \"%(filename)-25s %(lineno)4d %(levelname)-8s %(message)s\"\nDEFAULT_LOG_DATE_FORMAT = \"%H:%M:%S\"\n\n\nclass ColoredLevelFormatter(logging.Formatter):\n",
+            "new_text": "DEFAULT_LOG_FORMAT = \"%(levelname)-8s %(name)s:%(filename)s:%(lineno)d %(message)s\"\nDEFAULT_LOG_DATE_FORMAT = \"%H:%M:%S\"\n\n\nclass ColoredLevelFormatter(logging.Formatter):\n",
+            "match_ratio": 1.0,
+            "match_segment": "DEFAULT_LOG_FORMAT = \"%(filename)-25s %(lineno)4d %(levelname)-8s %(message)s\"\nDEFAULT_LOG_DATE_FORMAT = \"%H:%M:%S\"\n\n\nclass ColoredLevelFormatter(logging.Formatter):\n",
+            "start_idx": 385,
+            "num_matches": 1
+        }
+    ]
+}

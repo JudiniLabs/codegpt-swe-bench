@@ -1,0 +1,13 @@
+--- a/django/db/models/base.py
++++ b/django/db/models/base.py
+@@ -1866,6 +1866,10 @@
+     @classmethod
+     def _check_constraints(cls, databases):
+         errors = []
++        # Check that fields in UniqueConstraint and CheckConstraint exist
++        for constraint in cls._meta.constraints:
++            if isinstance(constraint, UniqueConstraint):
++                errors.extend(cls._check_local_fields(constraint.fields, "constraints"))
+         for db in databases:
+             if not router.allow_migrate_model(db, cls):
+                 continue

@@ -1,0 +1,12 @@
+{
+    "lib/matplotlib/figure.py": [
+        {
+            "orig_text": "        elif constrained_layout is not None:\n            self.set_layout_engine(layout='constrained')\n            if isinstance(constrained_layout, dict):\n                self.get_layout_engine().set(**constrained_layout)\n",
+            "new_text": "        elif constrained_layout is not None:\n            if constrained_layout:\n                self.set_layout_engine(layout='constrained')\n                if isinstance(constrained_layout, dict):\n                    self.get_layout_engine().set(**constrained_layout)\n",
+            "match_ratio": 1.0,
+            "match_segment": "        elif constrained_layout is not None:\n            self.set_layout_engine(layout='constrained')\n            if isinstance(constrained_layout, dict):\n                self.get_layout_engine().set(**constrained_layout)\n",
+            "start_idx": 90611,
+            "num_matches": 1
+        }
+    ]
+}

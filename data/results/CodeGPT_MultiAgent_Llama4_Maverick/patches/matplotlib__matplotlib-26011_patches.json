@@ -1,0 +1,12 @@
+{
+    "lib/matplotlib/axes/_base.py": [
+        {
+            "orig_text": "import matplotlib.artist as martist\nimport matplotlib.axis as maxis\nfrom matplotlib.cbook import _OrderedSet, _check_1d, index_of\nimport matplotlib.collections as mcoll\nimport matplotlib.colors as mcolors\nimport matplotlib.font_manager as font_manager\n",
+            "new_text": "import matplotlib.artist as martist\nimport matplotlib.axis as maxis\nfrom matplotlib.cbook import _OrderedSet, _check_1d, index_of\nfrom dataclasses import dataclass\nimport matplotlib.collections as mcoll\nimport matplotlib.colors as mcolors\nimport matplotlib.font_manager as font_manager\n@dataclass\nclass _NoRecursionMarker:\n event_src: object\n",
+            "match_ratio": 1.0,
+            "match_segment": "import matplotlib.artist as martist\nimport matplotlib.axis as maxis\nfrom matplotlib.cbook import _OrderedSet, _check_1d, index_of\nimport matplotlib.collections as mcoll\nimport matplotlib.colors as mcolors\nimport matplotlib.font_manager as font_manager\n",
+            "start_idx": 301,
+            "num_matches": 1
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+--- a/lib/matplotlib/axes/_base.py
++++ b/lib/matplotlib/axes/_base.py
+@@ -14,9 +14,13 @@
+ import matplotlib.artist as martist
+ import matplotlib.axis as maxis
+ from matplotlib.cbook import _OrderedSet, _check_1d, index_of
++from dataclasses import dataclass
+ import matplotlib.collections as mcoll
+ import matplotlib.colors as mcolors
+ import matplotlib.font_manager as font_manager
++@dataclass
++class _NoRecursionMarker:
++ event_src: object
+ from matplotlib.gridspec import SubplotSpec
+ import matplotlib.image as mimage
+ import matplotlib.lines as mlines

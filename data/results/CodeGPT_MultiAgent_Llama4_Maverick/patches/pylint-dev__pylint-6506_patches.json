@@ -1,0 +1,11 @@
+{
+    "pylint/config/config_initialization.py": [
+        {
+            "orig_text": " if unrecognized_options:\n msg = \", \".join(unrecognized_options)\n linter.add_message(\"unrecognized-option\", line=0, args=msg)\n raise _UnrecognizedOptionError(options=unrecognized_options)\n\n # Set the current module to configuration as we don't know where\n",
+            "new_text": " if unrecognized_options:\n msg = \", \".join(unrecognized_options)\n linter.add_message(\"unrecognized-option\", line=0, args=msg)\n sys.exit(32)\n\n # Set the current module to configuration as we don't know where\n",
+            "match_ratio": 0.9058823529411765,
+            "match_segment": " if unrecognized_options:\n        msg = \", \".join(unrecognized_options)\n        linter.add_message(\"unrecognized-option\", line=0, args=msg)\n        raise _UnrecognizedOptionError(options=unrecognized_options)\n\n    # Set the current module to configuration",
+            "num_matches": 0
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "django/core/management/base.py": [
+        {
+            "orig_text": "    def create_parser(self, prog_name, subcommand, **kwargs):\n        \"\"\"\n        Create and return the ``ArgumentParser`` which will be used to\n        parse the arguments to this command.\n        \"\"\"\n        parser = CommandParser(\n            prog=\"%s %s\" % (os.path.basename(prog_name), subcommand),\n            description=self.help or None,\n            formatter_class=DjangoHelpFormatter,\n            missing_args_message=getattr(self, \"missing_args_message\", None),\n            called_from_command_line=getattr(self, \"_called_from_command_line\", None),\n            **kwargs,\n        )\n",
+            "new_text": "    def create_parser(self, prog_name, subcommand, **kwargs):\n        \"\"\"\n        Create and return the ``ArgumentParser`` which will be used to\n        parse the arguments to this command.\n        \"\"\"\n        kwargs.setdefault(\"formatter_class\", DjangoHelpFormatter)\n        parser = CommandParser(\n            prog=\"%s %s\" % (os.path.basename(prog_name), subcommand),\n            description=self.help or None,\n            missing_args_message=getattr(self, \"missing_args_message\", None),\n            called_from_command_line=getattr(self, \"_called_from_command_line\", None),\n            **kwargs,\n        )\n",
+            "match_ratio": 1.0,
+            "match_segment": "    def create_parser(self, prog_name, subcommand, **kwargs):\n        \"\"\"\n        Create and return the ``ArgumentParser`` which will be used to\n        parse the arguments to this command.\n        \"\"\"\n        parser = CommandParser(\n            prog=\"%s %s\" % (os.path.basename(prog_name), subcommand),\n            description=self.help or None,\n            formatter_class=DjangoHelpFormatter,\n            missing_args_message=getattr(self, \"missing_args_message\", None),\n            called_from_command_line=getattr(self, \"_called_from_command_line\", None),\n            **kwargs,\n        )\n",
+            "start_idx": 9711,
+            "num_matches": 1
+        }
+    ]
+}

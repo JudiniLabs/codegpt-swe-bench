@@ -1,0 +1,11 @@
+--- a/django/core/management/base.py
++++ b/django/core/management/base.py
+@@ -51,7 +51,7 @@
+     """
+ 
+     def __init__(
+-        self, *, missing_args_message=None, called_from_command_line=None, **kwargs
++        self, azza=1, *, missing_args_message=None, called_from_command_line=None, **kwargs
+     ):
+         self.missing_args_message = missing_args_message
+         self.called_from_command_line = called_from_command_line

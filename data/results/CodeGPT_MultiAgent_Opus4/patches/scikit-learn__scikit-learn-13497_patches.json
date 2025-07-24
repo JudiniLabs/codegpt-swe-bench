@@ -1,0 +1,12 @@
+{
+    "sklearn/feature_selection/mutual_info_.py": [
+        {
+            "orig_text": "    X, y = check_X_y(X, y, accept_sparse='csc', y_numeric=not discrete_target)\n    n_samples, n_features = X.shape\n\n    if discrete_features == 'auto':\n        discrete_features = issparse(X)\n",
+            "new_text": "    X, y = check_X_y(X, y, accept_sparse='csc', y_numeric=not discrete_target)\n    n_samples, n_features = X.shape\n\n    if isinstance(discrete_features, str) and discrete_features == 'auto':\n        discrete_features = issparse(X)\n",
+            "match_ratio": 1.0,
+            "match_segment": "    X, y = check_X_y(X, y, accept_sparse='csc', y_numeric=not discrete_target)\n    n_samples, n_features = X.shape\n\n    if discrete_features == 'auto':\n        discrete_features = issparse(X)\n",
+            "start_idx": 7922,
+            "num_matches": 1
+        }
+    ]
+}

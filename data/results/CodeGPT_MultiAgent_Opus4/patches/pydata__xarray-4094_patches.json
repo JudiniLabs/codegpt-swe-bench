@@ -1,0 +1,12 @@
+{
+    "xarray/core/dataarray.py": [
+        {
+            "orig_text": "        # pull variables out of datarray\n        data_dict = {}\n        for k in variables:\n            data_dict[k] = self.sel({variable_dim: k}).squeeze(drop=True)\n\n        # unstacked dataset\n        return Dataset(data_dict)\n",
+            "new_text": "        # pull variables out of datarray\n        data_dict = {}\n        for k in variables:\n            var = self.sel({variable_dim: k}).squeeze(drop=True)\n            # drop the stacked dimension coordinate to avoid conflicts\n            if dim in var.coords:\n                var = var.drop_vars(dim)\n            data_dict[k] = var\n\n        # unstacked dataset\n        return Dataset(data_dict)\n",
+            "match_ratio": 1.0,
+            "match_segment": "        # pull variables out of datarray\n        data_dict = {}\n        for k in variables:\n            data_dict[k] = self.sel({variable_dim: k}).squeeze(drop=True)\n\n        # unstacked dataset\n        return Dataset(data_dict)\n",
+            "start_idx": 69134,
+            "num_matches": 1
+        }
+    ]
+}

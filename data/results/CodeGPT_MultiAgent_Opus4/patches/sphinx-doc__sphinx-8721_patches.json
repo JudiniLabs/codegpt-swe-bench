@@ -1,0 +1,12 @@
+{
+    "sphinx/ext/viewcode.py": [
+        {
+            "orig_text": "def collect_pages(app: Sphinx) -> Generator[Tuple[str, Dict[str, Any], str], None, None]:\n    env = app.builder.env\n    if not hasattr(env, '_viewcode_modules'):\n        return\n",
+            "new_text": "def collect_pages(app: Sphinx) -> Generator[Tuple[str, Dict[str, Any], str], None, None]:\n    env = app.builder.env\n    if not hasattr(env, '_viewcode_modules'):\n        return\n    if app.builder.name.startswith(\"epub\") and not env.config.viewcode_enable_epub:\n        return\n",
+            "match_ratio": 1.0,
+            "match_segment": "def collect_pages(app: Sphinx) -> Generator[Tuple[str, Dict[str, Any], str], None, None]:\n    env = app.builder.env\n    if not hasattr(env, '_viewcode_modules'):\n        return\n",
+            "start_idx": 6640,
+            "num_matches": 1
+        }
+    ]
+}

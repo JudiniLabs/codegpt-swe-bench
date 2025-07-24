@@ -1,0 +1,24 @@
+--- a/sympy/matrices/common.py
++++ b/sympy/matrices/common.py
+@@ -1973,6 +1973,10 @@
+ 
+     @call_highest_priority('__rmatmul__')
+     def __matmul__(self, other):
++        other = _matrixify(other)
++        # Check if other is a matrix
++        if not (getattr(other, 'is_Matrix', False) or getattr(other, 'is_MatrixLike', False)):
++            raise ValueError("Scalar operands are not allowed, use '*' instead")
+         return self.__mul__(other)
+ 
+     @call_highest_priority('__rmul__')
+@@ -2068,6 +2072,10 @@
+ 
+     @call_highest_priority('__matmul__')
+     def __rmatmul__(self, other):
++        other = _matrixify(other)
++        # Check if other is a matrix
++        if not (getattr(other, 'is_Matrix', False) or getattr(other, 'is_MatrixLike', False)):
++            raise ValueError("Scalar operands are not allowed, use '*' instead")
+         return self.__rmul__(other)
+ 
+     @call_highest_priority('__mul__')

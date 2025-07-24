@@ -1,0 +1,21 @@
+--- a/sympy/core/function.py
++++ b/sympy/core/function.py
+@@ -1051,6 +1051,18 @@
+ 
+ 
+ class Derivative(Expr):
++
++    @property
++    def kind(self):
++        return self._eval_is_kind()
++
++    def _eval_is_kind(self):
++        from sympy.core.kind import Kind
++        arg_kind = self.expr.kind
++        if isinstance(arg_kind, Kind):
++            return arg_kind
++        # In case arg_kind is UndefinedKind there is not enough information
++        # to determine the kind of the derivative
+     """
+     Carries out differentiation of the given expression with respect to symbols.
+ 

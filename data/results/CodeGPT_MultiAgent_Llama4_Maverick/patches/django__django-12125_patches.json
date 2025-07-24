@@ -1,0 +1,12 @@
+{
+    "django/db/migrations/serializer.py": [
+        {
+            "orig_text": " return \"%s.%s\" % (module, self.value.__name__), {\"import %s\" % module}\n",
+            "new_text": " return \"%s.%s\" % (module, self.value.__qualname__), {\"import %s\" % module}\n",
+            "match_ratio": 1.0,
+            "match_segment": " return \"%s.%s\" % (module, self.value.__name__), {\"import %s\" % module}\n",
+            "start_idx": 9650,
+            "num_matches": 1
+        }
+    ]
+}

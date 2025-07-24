@@ -1,0 +1,12 @@
+{
+    "sympy/matrices/sparse.py": [
+        {
+            "orig_text": "class SparseMatrix(MatrixBase):\n",
+            "new_text": "class SparseMatrix(MatrixBase):\n    def _eval_col_join(self, other):\n        if not isinstance(other, SparseMatrix):\n            other = SparseMatrix(other)\n        return MutableSparseMatrix(self)._eval_col_join(other)\n\n    def _eval_row_join(self, other):\n        if not isinstance(other, SparseMatrix):\n            other = SparseMatrix(other)\n        return MutableSparseMatrix(self)._eval_row_join(other)\n",
+            "match_ratio": 1.0,
+            "match_segment": "class SparseMatrix(MatrixBase):\n",
+            "start_idx": 541,
+            "num_matches": 1
+        }
+    ]
+}

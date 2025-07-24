@@ -1,0 +1,18 @@
+{
+    "django/core/management/templates.py": [
+        {
+            "orig_text": "if target is None:\n top_dir = os.path.join(os.getcwd(), name)\n try:\n",
+            "new_text": "if target is None:\n top_dir = os.path.join(os.getcwd(), name.rstrip(os.path.sep))\n try:\n",
+            "match_ratio": 0.8382352941176471,
+            "match_segment": "if target is None:\n            top_dir = os.path.join(os.getcwd(), n",
+            "num_matches": 0
+        },
+        {
+            "orig_text": "if app_or_project == 'app':\n self.validate_name(os.path.basename(target), 'directory')\n top_dir = os.path.abspath(os.path.expanduser(target))\n if not os.path.exists(top_dir):\n",
+            "new_text": "if app_or_project == 'app':\n self.validate_name(os.path.basename(target.rstrip(os.path.sep)), 'directory')\n top_dir = os.path.abspath(os.path.expanduser(target))\n if not os.path.exists(top_dir):\n",
+            "match_ratio": 0.8571428571428572,
+            "match_segment": "       self.validate_name(os.path.basename(target), 'directory')\n            top_dir = os.path.abspath(os.path.expanduser(target))\n            if not os.path.exists(top_dir):\n",
+            "num_matches": 0
+        }
+    ]
+}

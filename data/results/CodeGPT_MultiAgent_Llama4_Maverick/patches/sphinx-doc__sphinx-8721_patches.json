@@ -1,0 +1,11 @@
+{
+    "sphinx/ext/viewcode.py": [
+        {
+            "orig_text": " if app.builder.name == \"singlehtml\":\n return\n if app.builder.name.startswith(\"epub\") and not env.config.viewcode_enable_epub:\n return\n\n def has_tag(modname: str, fullname: str, docname: str, refname: str) -> bool:\n entry = env._viewcode_modules.get(modname, None) # type: ignore\n if entry is False:\n",
+            "new_text": " if app.builder.name == \"singlehtml\" or app.builder.format != 'html':\n return\n if not env.config.viewcode_enable_epub and 'epub' in app.builder.tags:\n return\n\n def has_tag(modname: str, fullname: str, docname: str, refname: str) -> bool:\n entry = env._viewcode_modules.get(modname, None) # type: ignore\n if entry is False:\n",
+            "match_ratio": 0.9066666666666666,
+            "match_segment": " if app.builder.name == \"singlehtml\":\n        return\n    if app.builder.name.startswith(\"epub\") and not env.config.viewcode_enable_epub:\n        return\n\n    def has_tag(modname: str, fullname: str, docname: str, refname: str) -> bool:\n        entry = env._viewcode_modules.get(modname, None)  # type:",
+            "num_matches": 0
+        }
+    ]
+}

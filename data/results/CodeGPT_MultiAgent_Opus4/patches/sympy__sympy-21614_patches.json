@@ -1,0 +1,12 @@
+{
+    "sympy/core/function.py": [
+        {
+            "orig_text": "    @property\n    def expr(self):\n        return self._args[0]\n\n    @property\n    def _wrt_variables(self):\n",
+            "new_text": "    @property\n    def expr(self):\n        return self._args[0]\n\n    @property\n    def kind(self):\n        return self.expr.kind\n\n    @property\n    def _wrt_variables(self):\n",
+            "match_ratio": 1.0,
+            "match_segment": "    @property\n    def expr(self):\n        return self._args[0]\n\n    @property\n    def _wrt_variables(self):\n",
+            "start_idx": 57659,
+            "num_matches": 1
+        }
+    ]
+}

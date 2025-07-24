@@ -1,0 +1,20 @@
+{
+    "sympy/matrices/common.py": [
+        {
+            "orig_text": "    @call_highest_priority('__rmatmul__')\n    def __matmul__(self, other):\n        return self.__mul__(other)\n",
+            "new_text": "    @call_highest_priority('__rmatmul__')\n    def __matmul__(self, other):\n        other = _matrixify(other)\n        # Check if other is a matrix\n        if not (getattr(other, 'is_Matrix', False) or getattr(other, 'is_MatrixLike', False)):\n            raise ValueError(\"Scalar operands are not allowed, use '*' instead\")\n        return self.__mul__(other)\n",
+            "match_ratio": 1.0,
+            "match_segment": "    @call_highest_priority('__rmatmul__')\n    def __matmul__(self, other):\n        return self.__mul__(other)\n",
+            "start_idx": 55047,
+            "num_matches": 1
+        },
+        {
+            "orig_text": "    @call_highest_priority('__matmul__')\n    def __rmatmul__(self, other):\n        return self.__rmul__(other)\n",
+            "new_text": "    @call_highest_priority('__matmul__')\n    def __rmatmul__(self, other):\n        other = _matrixify(other)\n        # Check if other is a matrix\n        if not (getattr(other, 'is_Matrix', False) or getattr(other, 'is_MatrixLike', False)):\n            raise ValueError(\"Scalar operands are not allowed, use '*' instead\")\n        return self.__rmul__(other)\n",
+            "match_ratio": 1.0,
+            "match_segment": "    @call_highest_priority('__matmul__')\n    def __rmatmul__(self, other):\n        return self.__rmul__(other)\n",
+            "start_idx": 58382,
+            "num_matches": 1
+        }
+    ]
+}

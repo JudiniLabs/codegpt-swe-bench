@@ -1,0 +1,11 @@
+{
+    "lib/matplotlib/figure.py": [
+        {
+            "orig_text": " if (self.get_layout_engine() is not None and\n not self.get_layout_engine().adjust_compatible):\n _api.warn_external(\n \"This figure was using a layout engine that is \"\n \"incompatible with subplots_adjust and/or tight_layout; \"\n \"not calling subplots_adjust.\")\n return\n self.subplotpars.update(left, bottom, right, top, wspace, hspace)\n for ax in self.axes:\n if hasattr(ax, 'get_subplotspec'):\n ax._set_position(ax.get_subplotspec().get_position(self))\n self.stale = True\n",
+            "new_text": " if self.get_layout_engine() is not None:\n if not self.get_layout_engine().adjust_compatible:\n _api.warn_external(\n \"This figure was using a layout engine that is \"\n \"incompatible with subplots_adjust and/or tight_layout; \"\n \"not calling subplots_adjust.\")\n return\n self.subplotpars.update(left, bottom, right, top, wspace, hspace)\n for ax in self.axes:\n if hasattr(ax, 'get_subplotspec'):\n ax._set_position(ax.get_subplotspec().get_position(self))\n self.stale = True\n",
+            "match_ratio": 0.7808510638297872,
+            "match_segment": "le):\n            _api.warn_external(\n                \"This figure was using a layout engine that is \"\n                \"incompatible with subplots_adjust and/or tight_layout; \"\n                \"not calling subplots_adjust.\")\n            return\n        self.subplotpars.update(left, bottom, right, top, wspace, hspace)\n        for ax in self.axes:\n            if hasattr(ax, 'get_subplotspec'):\n                ax._set_position(ax.get_subplotspec().get_position(self))\n   ",
+            "num_matches": 0
+        }
+    ]
+}

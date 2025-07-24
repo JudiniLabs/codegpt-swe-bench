@@ -1,0 +1,20 @@
+{
+    "django/utils/cache.py": [
+        {
+            "orig_text": "if_unmodified_since = request.META.get(\"HTTP_IF_UNMODIFIED_SINCE\")\nif_unmodified_since = if_unmodified_since and parse_http_date_safe(\n if_unmodified_since\n)\nif_modified_since = request.META.get(\"HTTP_IF_MODIFIED_SINCE\")\nif_modified_since = if_modified_since and parse_http_date_safe(if_modified_since)\n",
+            "new_text": "if_unmodified_since = request.META.get(\"HTTP_IF_UNMODIFIED_SINCE\")\nif if_unmodified_since is not None:\n try:\n if_unmodified_since = parse_http_date_safe(if_unmodified_since)\n except ValueError:\n if_unmodified_since = None\nif_modified_since = request.META.get(\"HTTP_IF_MODIFIED_SINCE\")\nif if_modified_since is not None:\n try:\n if_modified_since = parse_http_date_safe(if_modified_since)\n except ValueError:\n if_modified_since = None\n",
+            "match_ratio": 0.759075907590759,
+            "match_segment": " if_unmodified_since = request.META.get(\"HTTP_IF_UNMODIFIED_SINCE\")\n    if_unmodified_since = if_unmodified_since and parse_http_date_safe(\n        if_unmodified_since\n    )\n    if_none_match_etags = parse_etags(request.META.get(\"HTTP_IF_NONE_MATCH\", \"\"))\n    if_modified_since = request.META.get(\"HTTP_",
+            "num_matches": 0
+        }
+    ],
+    "django/utils/http.py": [
+        {
+            "orig_text": "try:\n return parse_http_date(date)\nexcept Exception:\n pass\n",
+            "new_text": "try:\n return parse_http_date(date)\nexcept ValueError:\n return None\n",
+            "match_ratio": 0.8305084745762712,
+            "match_segment": "       return parse_http_date(date)\n    except Exception:\n ",
+            "num_matches": 0
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+--- a/sympy/core/function.py
++++ b/sympy/core/function.py
+@@ -1669,6 +1669,10 @@
+     @property
+     def expr(self):
+         return self._args[0]
++
++    @property
++    def kind(self):
++        return self.expr.kind
+ 
+     @property
+     def _wrt_variables(self):

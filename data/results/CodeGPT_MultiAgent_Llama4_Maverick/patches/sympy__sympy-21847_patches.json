@@ -1,0 +1,26 @@
+{
+    "sympy/polys/monomials.py": [
+        {
+            "orig_text": " if max(powers.values()) >= min_degree:\n",
+            "new_text": " if sum(powers.values()) >= min_degree:\n",
+            "match_ratio": 1.0,
+            "match_segment": " if max(powers.values()) >= min_degree:\n",
+            "start_idx": 5172,
+            "num_matches": 1
+        },
+        {
+            "orig_text": "            if max(powers.values()) >= min_degree:\n                monomials_list_comm.append(Mul(*item))\n            yield from set(monomials_list_comm)\n        else:\n",
+            "new_text": "            if sum(powers.values()) >= min_degree:\n                monomials_list_comm.append(Mul(*item))\n            yield from set(monomials_list_comm)\n        else:\n",
+            "match_ratio": 0.9761904761904762,
+            "match_segment": "            if max(powers.values()) >= min_degree:\n                    monomials_list_comm.append(Mul(*item))\n            yield from set(monomials_list_comm)\n        el",
+            "num_matches": 0
+        },
+        {
+            "orig_text": "            if max(powers.values()) >= min_degree:\n                monomials_list_non_comm.append(Mul(*item))\n            yield from set(monomials_list_non_comm)\n        else:\n",
+            "new_text": "            if sum(powers.values()) >= min_degree:\n                monomials_list_non_comm.append(Mul(*item))\n            yield from set(monomials_list_non_comm)\n        else:\n",
+            "match_ratio": 0.9772727272727273,
+            "match_segment": "            if max(powers.values()) >= min_degree:\n                    monomials_list_non_comm.append(Mul(*item))\n            yield from set(monomials_list_non_comm)\n    else:\n",
+            "num_matches": 0
+        }
+    ]
+}

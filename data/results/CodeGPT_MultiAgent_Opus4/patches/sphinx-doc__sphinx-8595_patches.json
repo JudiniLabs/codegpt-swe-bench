@@ -1,0 +1,12 @@
+{
+    "sphinx/ext/autodoc/__init__.py": [
+        {
+            "orig_text": "    def get_object_members(self, want_all: bool) -> Tuple[bool, ObjectMembers]:\n        members = self.get_module_members()\n        if want_all:\n            if not self.__all__:\n                # for implicit module members, check __module__ to avoid\n                # documenting imported objects\n                return True, list(members.values())\n            else:\n                for member in members.values():\n                    if member.__name__ not in self.__all__:\n                        member.skipped = True\n\n                return False, list(members.values())\n",
+            "new_text": "    def get_object_members(self, want_all: bool) -> Tuple[bool, ObjectMembers]:\n        members = self.get_module_members()\n        if want_all:\n            if self.__all__ is None:\n                # for implicit module members, check __module__ to avoid\n                # documenting imported objects\n                return True, list(members.values())\n            else:\n                for member in members.values():\n                    if member.__name__ not in self.__all__:\n                        member.skipped = True\n\n                return False, list(members.values())\n",
+            "match_ratio": 1.0,
+            "match_segment": "    def get_object_members(self, want_all: bool) -> Tuple[bool, ObjectMembers]:\n        members = self.get_module_members()\n        if want_all:\n            if not self.__all__:\n                # for implicit module members, check __module__ to avoid\n                # documenting imported objects\n                return True, list(members.values())\n            else:\n                for member in members.values():\n                    if member.__name__ not in self.__all__:\n                        member.skipped = True\n\n                return False, list(members.values())\n",
+            "start_idx": 43484,
+            "num_matches": 1
+        }
+    ]
+}

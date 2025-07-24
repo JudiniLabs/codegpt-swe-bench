@@ -1,0 +1,11 @@
+{
+    "xarray/core/variable.py": [
+        {
+            "orig_text": " if isinstance(data, Variable):\n return data.data\n\n if isinstance(data, NON_NUMPY_SUPPORTED_ARRAY_TYPES):\n return _maybe_wrap_data(data)\n",
+            "new_text": " if isinstance(data, (Variable, DataArray)):\n return data.data\n\n if isinstance(data, NON_NUMPY_SUPPORTED_ARRAY_TYPES):\n return _maybe_wrap_data(data)\n",
+            "match_ratio": 0.8759124087591241,
+            "match_segment": " if isinstance(data, Variable):\n        return data.data\n\n    if isinstance(data, NON_NUMPY_SUPPORTED_ARRAY_TYPES):\n        return _maybe",
+            "num_matches": 0
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "django/db/migrations/serializer.py": [
+        {
+            "orig_text": "class FunctionTypeSerializer(BaseSerializer):\n    def serialize(self):\n        if getattr(self.value, \"__self__\", None) and isinstance(\n            self.value.__self__, type\n        ):\n            klass = self.value.__self__\n            module = klass.__module__\n            return \"%s.%s.%s\" % (module, klass.__name__, self.value.__name__), {\n                \"import %s\" % module\n            }\n",
+            "new_text": "class FunctionTypeSerializer(BaseSerializer):\n    def serialize(self):\n        if getattr(self.value, \"__self__\", None) and isinstance(\n            self.value.__self__, type\n        ):\n            klass = self.value.__self__\n            module = klass.__module__\n            return \"%s.%s.%s\" % (module, klass.__qualname__, self.value.__name__), {\n                \"import %s\" % module\n            }\n",
+            "match_ratio": 1.0,
+            "match_segment": "class FunctionTypeSerializer(BaseSerializer):\n    def serialize(self):\n        if getattr(self.value, \"__self__\", None) and isinstance(\n            self.value.__self__, type\n        ):\n            klass = self.value.__self__\n            module = klass.__module__\n            return \"%s.%s.%s\" % (module, klass.__name__, self.value.__name__), {\n                \"import %s\" % module\n            }\n",
+            "start_idx": 4973,
+            "num_matches": 1
+        }
+    ]
+}

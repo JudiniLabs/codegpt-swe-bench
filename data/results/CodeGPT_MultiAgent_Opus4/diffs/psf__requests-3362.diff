@@ -1,0 +1,28 @@
+--- a/requests/utils.py
++++ b/requests/utils.py
+@@ -359,12 +359,22 @@
+ def stream_decode_response_unicode(iterator, r):
+     """Stream decodes a iterator."""
+ 
+-    if r.encoding is None:
++    encoding = r.encoding
++
++    # If encoding is not set, try to decode with utf-8 as a reasonable default
++    # This matches the behavior of Response.text when encoding is None
++    if encoding is None:
++        encoding = 'utf-8'
++
++    try:
++        decoder = codecs.getincrementaldecoder(encoding)(errors='replace')
++    except (LookupError, TypeError):
++        # If the encoding is invalid or None was passed despite our check,
++        # fall back to yielding bytes
+         for item in iterator:
+             yield item
+         return
+-
+-    decoder = codecs.getincrementaldecoder(r.encoding)(errors='replace')
++
+     for chunk in iterator:
+         rv = decoder.decode(chunk)
+         if rv:

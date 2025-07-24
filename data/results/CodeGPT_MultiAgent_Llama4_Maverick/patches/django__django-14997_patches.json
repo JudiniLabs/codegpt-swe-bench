@@ -1,0 +1,11 @@
+{
+    "django/db/backends/ddl_references.py": [
+        {
+            "orig_text": "def rename_table_references(self, old_table, new_table):\n if self.table != old_table:\n return\n expressions = deepcopy(self.expressions)\n self.columns = []\n for col in self.compiler.query._gen_cols([self.expressions]):\n col.alias = new_table\n",
+            "new_text": "def rename_table_references(self, old_table, new_table):\n if self.table != old_table:\n return\n expressions = deepcopy(self.expressions)\n self.columns = []\n for col in self.compiler.query._gen_cols([expressions]):\n col.alias = new_table\n self.expressions = expressions\n super().rename_table_references(old_table, new_table)\n",
+            "match_ratio": 0.8381742738589212,
+            "match_segment": "def rename_table_references(self, old_table, new_table):\n        if self.table != old_table:\n            return\n        expressions = deepcopy(self.expressions)\n        self.columns = []\n        for col in self.compiler.query._gen_cols([expr",
+            "num_matches": 0
+        }
+    ]
+}

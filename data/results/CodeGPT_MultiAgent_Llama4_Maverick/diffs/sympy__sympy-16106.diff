@@ -1,0 +1,26 @@
+--- a/sympy/printing/mathml.py
++++ b/sympy/printing/mathml.py
+@@ -117,6 +117,11 @@
+ 
+ 
+ class MathMLContentPrinter(MathMLPrinterBase):
++ def _print_Indexed(self, e):
++ x = self.dom.createElement('indexed')
++ x.appendChild(self._print(e.base))
++ x.appendChild(self._print(e.index))
++ return x
+     """Prints an expression to the Content MathML markup language.
+ 
+     References: https://www.w3.org/TR/MathML2/chapter4.html
+@@ -479,6 +484,11 @@
+ 
+ 
+ class MathMLPresentationPrinter(MathMLPrinterBase):
++ def _print_Indexed(self, e):
++ msub = self.dom.createElement('msub')
++ msub.appendChild(self._print(e.base.label))
++ msub.appendChild(self._print(e.index))
++ return msub
+     """Prints an expression to the Presentation MathML markup language.
+ 
+     References: https://www.w3.org/TR/MathML2/chapter3.html

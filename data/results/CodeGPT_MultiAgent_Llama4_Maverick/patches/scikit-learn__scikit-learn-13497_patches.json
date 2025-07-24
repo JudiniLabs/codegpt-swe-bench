@@ -1,0 +1,12 @@
+{
+    "sklearn/feature_selection/mutual_info_.py": [
+        {
+            "orig_text": "if discrete_features == 'auto':\n",
+            "new_text": "if discrete_features is 'auto':\n",
+            "match_ratio": 1.0,
+            "match_segment": "if discrete_features == 'auto':\n",
+            "start_idx": 8042,
+            "num_matches": 1
+        }
+    ]
+}

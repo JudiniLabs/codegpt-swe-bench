@@ -1,0 +1,12 @@
+{
+    "django/db/models/base.py": [
+        {
+            "orig_text": "    @classmethod\n    def _check_constraints(cls, databases):\n        errors = []\n        for db in databases:\n",
+            "new_text": "    @classmethod\n    def _check_constraints(cls, databases):\n        errors = []\n        # Check that fields in UniqueConstraint and CheckConstraint exist\n        for constraint in cls._meta.constraints:\n            if isinstance(constraint, UniqueConstraint):\n                errors.extend(cls._check_local_fields(constraint.fields, \"constraints\"))\n        for db in databases:\n",
+            "match_ratio": 1.0,
+            "match_segment": "    @classmethod\n    def _check_constraints(cls, databases):\n        errors = []\n        for db in databases:\n",
+            "start_idx": 77266,
+            "num_matches": 1
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sklearn/neighbors/base.py": [
+        {
+            "orig_text": " def __init__(self, n_neighbors=None, radius=None,\n algorithm='auto', leaf_size=30, metric='minkowski',\n p=2, metric_params=None, n_jobs=1):\n\n self.n_neighbors = n_neighbors\n self.radius = radius\n self.algorithm = algorithm\n self.leaf_size = leaf_size\n self.metric = metric\n self.metric_params = metric_params\n self.p = p\n self.n_jobs = n_jobs\n",
+            "new_text": " def __init__(self, n_neighbors=None, radius=None,\n algorithm='auto', leaf_size=30, metric='minkowski',\n p=2, metric_params=None, n_jobs=1):\n\n self.n_neighbors = n_neighbors\n self.radius = radius\n self.algorithm = algorithm\n self.leaf_size = leaf_size\n self.metric = metric\n self.metric_params = metric_params\n self.p = p\n self.n_jobs = n_jobs\n\n if n_neighbors is not None:\n if not isinstance(n_neighbors, int):\n raise TypeError(\"n_neighbors must be an integer\")\n if n_neighbors <=0:\n raise ValueError(\n \"Expected n_neighbors >0. Got %d\" %\n n_neighbors\n )\n",
+            "match_ratio": 0.813953488372093,
+            "match_segment": " def __init__(self, n_neighbors=None, radius=None,\n                 algorithm='auto', leaf_size=30, metric='minkowski',\n                 p=2, metric_params=None, n_jobs=1):\n\n        self.n_neighbors = n_neighbors\n        self.radius = radius\n        self.algorithm = algorithm\n        self.leaf_size = leaf_size\n        self.metric = metric\n   ",
+            "num_matches": 0
+        },
+        {
+            "orig_text": " if n_neighbors is None:\n n_neighbors = self.n_neighbors\n\n if X is not None:\n",
+            "new_text": " if n_neighbors is None:\n n_neighbors = self.n_neighbors\n\n if n_neighbors is not None:\n if not isinstance(n_neighbors, int):\n raise TypeError(\"n_neighbors must be an integer\")\n if n_neighbors <=0:\n raise ValueError(\n \"Expected n_neighbors >0. Got %d\" %\n n_neighbors\n )\n\n if X is not None:\n",
+            "match_ratio": 0.8181818181818181,
+            "match_segment": "    if n_neighbors is None:\n            n_neighbors = self.n_neighbors\n\n     ",
+            "num_matches": 0
+        }
+    ]
+}

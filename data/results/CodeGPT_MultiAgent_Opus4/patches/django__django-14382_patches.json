@@ -1,0 +1,12 @@
+{
+    "django/core/management/templates.py": [
+        {
+            "orig_text": "        else:\n            if app_or_project == 'app':\n                self.validate_name(os.path.basename(target), 'directory')\n            top_dir = os.path.abspath(os.path.expanduser(target))\n",
+            "new_text": "        else:\n            if app_or_project == 'app':\n                self.validate_name(os.path.basename(target.rstrip(os.sep)), 'directory')\n            top_dir = os.path.abspath(os.path.expanduser(target))\n",
+            "match_ratio": 1.0,
+            "match_segment": "        else:\n            if app_or_project == 'app':\n                self.validate_name(os.path.basename(target), 'directory')\n            top_dir = os.path.abspath(os.path.expanduser(target))\n",
+            "start_idx": 2858,
+            "num_matches": 1
+        }
+    ]
+}

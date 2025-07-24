@@ -1,0 +1,13 @@
+--- a/xarray/core/variable.py
++++ b/xarray/core/variable.py
+@@ -217,6 +217,10 @@
+     if isinstance(data, timedelta):
+         data = np.timedelta64(getattr(data, "value", data), "ns")
+ 
++    # Handle DataArray objects to preserve dask arrays
++    if isinstance(data, DataArray):
++        return data.data
++
+     # we don't want nested self-described arrays
+     data = getattr(data, "values", data)
+ 
