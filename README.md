@@ -167,15 +167,17 @@ graph TD
 
 The Levenshtein ratio is calculated as follows:
 
-$ \large
-s_1, s_2 \quad : \text{input strings} \\
+$$\large
+\begin{align*}
+s_1, s_2 : \text{input strings} \\
 D = \text{Levenshtein distance}(s_1, s_2) \\
 M = \text{max}(len(s_1), len(s_2)) - D \\
 Ratio = \frac{2M}{len(s_1) + len(s_2)}
-$
+\end{align*}
+$$
 
 In our case $len(s_1) = len(s_2)$, so the ratio is simplified to:
-$ Ratio = \frac{len(s_1) - D}{len(s_1)}$
+$Ratio = \frac{len(s_1) - D}{len(s_1)}$
 
 
 ## Running swe-bench
