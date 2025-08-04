@@ -124,11 +124,6 @@ graph TD
         P --> Z;
         Q --> Z[END];
 
-    %% Styling to highlight LLM calls
-    style G fill:#cde4ff,stroke:#4285F4,stroke-width:2px
-    style H fill:#e6f4ea,stroke:#34A853,stroke-width:2px
-    style J fill:#e6f4ea,stroke:#34A853,stroke-width:2px
-    style M fill:#cde4ff,stroke:#4285F4,stroke-width:2px
 ```
 
 ## Fuzzy Matching
